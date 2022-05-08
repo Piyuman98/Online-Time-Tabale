@@ -1,78 +1,81 @@
 <?php
-include 'connect.php';
+include 'connect.php';?>
 
-?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Crud operation</title>
+   
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="mainbluesurface" id="mainbluesurface">
 
-    <title>Lecture veiew</title>
-  </head>
-  <body>
-  <div class="mainbluesurface" id="mainbluesurface">
-    <div class="container">
-    <h1 style="font-size: 40px; color: #290066;"><center><b>Lecture Table </b></center></h1>
-        <button class="btn btn-primary my-5"><a href="index0.php" class="text-light">Add Lecture</a></button>
-        <button class="btn btn-primary my-5"><a href="index.php" class="text-light">Home</a></button>
-        <button class="btn btn-primary my-5"><a href="addsubject.php" class="text-light">Add Subject</a></button>
+<div class="container">
+<button class="btn btn-primary my-5"><a href="user.php"class="text-light">Add location</a>
 
-    <table class="table">
-    <thead>
+</button>
+
+<table class="table table-dark table-striped">
+  <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Faculty</th>
-      <th scope="col">Lavel</th>
-      <th scope="col">Action</th>
+      <th scope="col">Building name</th>
+      <th scope="col">Room name</th>
+      <th scope="col">Room type</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Operations</th>
     </tr>
   </thead>
   <tbody>
+
     <?php
 
-    $sql_quary="SELECT * FROM `lecture`";
-    $result=mysqli_query($con,$sql_quary);
+    $sql="Select * from `locations`";
+    $result=mysqli_query($con,$sql);
     if($result){
-
-        while( $row=mysqli_fetch_assoc($result)){
-            $Employee_ID=$row['Employee_ID'];
-            $Name=$row['Name'];
-            $Faculty=$row['Faculty'];
-            $Level=$row['Level'];
-            echo '<tr>
-            <th scope="row">'.$Employee_ID.'</th>
-            <td>'.$Name.'</td>
-            <td>'.$Faculty.'</td>
-            <td>'.$Level.'</td>
+        while($row=mysqli_fetch_assoc($result)){
+            $id=$row['id'];
+            $buildingname=$row['buildingname'];
+            $roomname=$row['roomname'];
+            $roomtype=$row['roomtype'];
+            $capacity=$row['capacity'];
+            echo ' <tr>
+            <th scope="row">'.$id.'</th>
+            <td>'.$buildingname.'</td>
+            <td>'.$roomname.'</td>
+            <td>'.$roomtype.'</td>
+            <td>'.$capacity.'</td>
             <td>
-            <button class="btn btn-primary"><a href="update.php? updateid='.$Employee_ID.'" style="font-size: 15px; color: #ffffff;">Update</a></button>
-            <button class="btn btn-danger"><a href="delete.php? delet='.$Employee_ID.'" style="font-size: 15px; color: #ffffff;">Delete</a></button>
-        </td>
+            <button class="btn btn-primary"><a href="update.php?updateid='.$id.'"
+            class="text-light">Update</a></button>
+            <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.' "
+            class="text-light">Delete</a></button>
+            </td>
           </tr>';
-
         }
-
     }
 
-
-
-
-
     ?>
+  
+     
 
   </tbody>
 </table>
-    </div>
-     <style>
+
+</div>
+<style>
         body {
   background-color:	 #0f0f3d;
   font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 .mainbluesurface {
@@ -85,4 +88,5 @@ include 'connect.php';
   margin-right: auto;
 }
 </style>
-  </body>
+</body>
+</html>
